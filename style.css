@@ -1,18 +1,68 @@
-:root { --rojo: #cc0000; --fondo: #000; --texto: #fff; }
-* { margin: 0; padding: 0; box-items: border-box; }
-body { font-family: sans-serif; background-color: var(--fondo); color: var(--texto); background-image: url('ave-fenix.jpg'); background-attachment: fixed; background-size: cover; }
-.hidden { display: none !important; }
-.contenedor-productos { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
-.producto-card { background: rgba(20,20,20,0.9); width: 280px; padding: 15px; border-radius: 10px; border: 1px solid #333; text-align: center; }
-.producto-card img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; }
-.btn-rojo { background: var(--rojo); color: #fff; border: none; padding: 12px; width: 100%; border-radius: 5px; cursor: pointer; font-weight: bold; }
-#cart-icon { position: fixed; top: 15px; right: 15px; background: var(--rojo); padding: 10px 15px; border-radius: 50px; z-index: 1000; cursor: pointer; }
+:root { --rojo: #cc0000; --oscuro: #000000; --gris: #1a1a1a; }
 
-/* ESTO ARREGLA EL CELULAR */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { 
+    font-family: 'Segoe UI', sans-serif; 
+    background-color: var(--oscuro); 
+    color: white;
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('ave-fenix.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.hidden { display: none !important; }
+
+/* Carrito Flotante */
+#cart-icon {
+    position: fixed; top: 20px; right: 20px;
+    background: var(--rojo); padding: 10px 20px;
+    border-radius: 50px; cursor: pointer; z-index: 1000;
+    font-weight: bold; border: 2px solid white;
+}
+
+/* Bienvenida */
+#bienvenida {
+    height: 100vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 20px;
+}
+
+.btn-rojo {
+    background: var(--rojo); color: white; border: none;
+    padding: 15px 30px; font-size: 1.2rem; border-radius: 5px;
+    cursor: pointer; margin-top: 20px; width: 100%; max-width: 300px;
+}
+
+/* Catálogo */
+.contenedor-productos {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px;
+}
+
+.producto-card {
+    background: var(--gris); width: 300px; padding: 15px;
+    border-radius: 10px; text-align: center; border: 1px solid #333;
+}
+
+.producto-card img { width: 100%; border-radius: 5px; height: 350px; object-fit: cover; }
+
+/* Detalle y Celular */
+.detalle-grid { display: flex; gap: 30px; padding: 20px; max-width: 1000px; margin: auto; }
+#imagen-principal { width: 400px; border-radius: 10px; }
+
 @media (max-width: 768px) {
-    .detalle-grid { display: flex; flex-direction: column; gap: 20px; padding: 10px; }
-    #imagen-principal { width: 100% !important; height: auto !important; max-height: 400px; object-fit: contain; }
-    .configurador { width: 100% !important; padding: 10px !important; }
-    .bienvenida-contenido h1 { font-size: 2rem !important; text-align: center; }
-    #bienvenida { padding-left: 0; justify-content: center; text-align: center; }
+    .detalle-grid { flex-direction: column; align-items: center; }
+    #imagen-principal { width: 100%; }
+    .producto-card { width: 100%; }
+}
+
+.configurador input, .configurador select, .formulario-cliente input {
+    width: 100%; padding: 12px; margin: 10px 0;
+    background: #333; color: white; border: 1px solid #555;
+}
+
+.btn-whatsapp {
+    background: #25d366; color: white; border: none;
+    padding: 15px; width: 100%; font-weight: bold; cursor: pointer;
+    border-radius: 5px; margin-top: 10px;
 }
