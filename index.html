@@ -29,14 +29,34 @@
     </section>
 
     <section id="seccion-ayuda" class="hidden">
-        <div style="padding: 20px; text-align: center;">
-            <h2>¿Cómo comprar?</h2>
-            <div style="text-align: left; background: #1a1a1a; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #cc0000;">
-                <p><strong>1. Elige:</strong> Selecciona tu prenda favorita.</p>
-                <p><strong>2. Personaliza:</strong> Dinos el color, talla y detalles.</p>
+        <div style="padding: 20px; max-width: 600px; margin: 0 auto; color: white;">
+            <h2 style="text-align: center; margin-bottom: 20px; color: #ffcc00;">¿Cómo comprar en Reyand Clothing?</h2>
+            
+            <div style="background: #1a1a1a; padding: 20px; border-radius: 12px; border-left: 5px solid #cc0000;">
+                <h3 style="margin-bottom: 10px;">👕 Prendas Personalizadas</h3>
+                <p>Manejamos chaquetas en <strong>Jean o Drill</strong> totalmente a tu gusto.</p>
+                
+                <h3 style="margin: 20px 0 10px 0; border-top: 1px solid #333; padding-top: 10px;">🧵 Calidad y Confección</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 10px;">
+                        <strong>✨ Línea Premium ($95.000):</strong><br>
+                        • Confección a 3 costuras para mayor resistencia.<br>
+                        • Cierre con 4 broches en los puños.
+                    </li>
+                    <li style="margin-bottom: 10px;">
+                        <strong>✅ Línea Estándar ($85.000):</strong><br>
+                        • Confección a 2 costuras.<br>
+                        • Cierre con 1 broche en los puños.
+                    </li>
+                </ul>
+
+                <h3 style="margin: 20px 0 10px 0; border-top: 1px solid #333; padding-top: 10px;">📲 Pasos para el pedido</h3>
+                <p><strong>1. Elige:</strong> Selecciona tu línea favorita en el catálogo.</p>
+                <p><strong>2. Personaliza:</strong> Dinos el color, talla y detalles de bordados.</p>
                 <p><strong>3. WhatsApp:</strong> Envía el resumen y coordinamos el pago.</p>
             </div>
-            <button class="btn-rojo" onclick="cerrarAyuda()">¡ENTENDIDO!</button>
+
+            <button class="btn-rojo" onclick="cerrarAyuda()" style="margin-top: 20px;">¡ENTENDIDO!</button>
         </div>
     </section>
 
@@ -66,10 +86,12 @@
     </section>
 
     <section id="detalle-tecnico" class="hidden">
-        <button onclick="volverAlCatalogo()" style="background:none; color:white; border:none; padding:10px; cursor:pointer;">← Volver al catálogo</button>
-        <div class="detalle-grid">
-            <img id="imagen-principal" src="" alt="Producto">
-            <h2 id="detalle-titulo"></h2>
+        <button onclick="volverAlCatalogo()" style="background:none; color:white; border:none; padding:15px; cursor:pointer; font-size: 1.1rem;">← Volver al catálogo</button>
+        <div class="detalle-grid" style="padding: 0 20px;">
+            <img id="imagen-principal" src="" alt="Producto" style="width:100%; border-radius:10px;">
+            <div id="miniaturas-contenedor" class="miniaturas-flex"></div>
+            
+            <h2 id="detalle-titulo" style="margin-top: 15px;"></h2>
             
             <label>Color de la prenda:</label>
             <select id="color-prenda">
@@ -86,8 +108,8 @@
             <label>Cantidad:</label>
             <input type="number" id="cantidad-input" value="1" min="1" oninput="actualizarCalculos()">
 
-            <label>Detalles extras (Bordados, nombres):</label>
-            <textarea id="personalizacion-texto" placeholder="Ej: Nombre 'Juan' en el pecho..."></textarea>
+            <label>Detalles extras (Bordados, nombres, RH):</label>
+            <textarea id="personalizacion-texto" placeholder="Ej: Bandera en brazo, nombre 'Yeison Guerra' en pecho..."></textarea>
 
             <p>Precio: <span id="precio-unitario"></span></p>
             <p>Subtotal: <strong id="subtotal-valor">$0</strong></p>
@@ -96,19 +118,19 @@
     </section>
 
     <section id="carrito-seccion" class="hidden">
-        <h2 style="text-align: center; margin: 20px 0;">TU PEDIDO</h2>
-        <div id="lista-carrito" style="padding: 10px;"></div>
+        <h2 style="text-align: center; margin: 20px 0;">RESUMEN DEL PEDIDO</h2>
+        <div id="lista-carrito"></div>
         
         <div class="botones-carrito-acciones">
-            <button class="btn-blanco" onclick="volverAlCatalogo()">+ MÁS PRODUCTOS</button>
-            <button class="btn-gris" onclick="vaciarCarrito()">🗑️ LIMPIAR</button>
+            <button class="btn-blanco" onclick="volverAlCatalogo()">+ SEGUIR COMPRANDO</button>
+            <button class="btn-gris" onclick="vaciarCarrito()">🗑️ VACIAR</button>
         </div>
 
         <h3 style="text-align: center;">TOTAL: <span id="total-precio">$0</span></h3>
         <p class="pago-info">💳 Recibimos Nequi, Daviplata o Efectivo</p>
         
         <div style="padding: 20px;">
-            <input type="text" id="nombre-cliente" placeholder="Escribe tu nombre">
+            <input type="text" id="nombre-cliente" placeholder="Escribe tu nombre completo">
             <button class="btn-rojo" style="background: #25D366;" onclick="enviarWhatsApp()">ENVIAR A WHATSAPP ✅</button>
         </div>
     </section>
