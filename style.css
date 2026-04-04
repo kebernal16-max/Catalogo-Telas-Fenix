@@ -1,68 +1,36 @@
-:root { --rojo: #cc0000; --oscuro: #000000; --gris: #1a1a1a; }
-
+:root { --rojo: #cc0000; --oscuro: #000; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body { 
-    font-family: 'Segoe UI', sans-serif; 
-    background-color: var(--oscuro); 
-    color: white;
-    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('ave-fenix.jpg');
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
+    font-family: sans-serif; background-color: var(--oscuro); color: white;
+    background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('ave-fenix.jpg');
+    background-size: cover; background-attachment: fixed; background-position: center;
 }
 
 .hidden { display: none !important; }
 
-/* Carrito Flotante */
 #cart-icon {
-    position: fixed; top: 20px; right: 20px;
-    background: var(--rojo); padding: 10px 20px;
-    border-radius: 50px; cursor: pointer; z-index: 1000;
-    font-weight: bold; border: 2px solid white;
+    position: fixed; top: 15px; right: 15px; background: var(--rojo);
+    padding: 10px 15px; border-radius: 50px; z-index: 1000; cursor: pointer;
 }
 
-/* Bienvenida */
-#bienvenida {
-    height: 100vh; display: flex; align-items: center; justify-content: center;
-    text-align: center; padding: 20px;
-}
+/* Galería de fotos */
+.detalle-galeria { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+#imagen-principal { width: 100%; max-width: 400px; border-radius: 10px; border: 1px solid #333; }
+.miniaturas-flex { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.miniatura-foto { width: 60px; height: 60px; object-fit: cover; border-radius: 5px; cursor: pointer; border: 2px solid transparent; }
+.miniatura-foto.activa { border-color: var(--rojo); }
 
-.btn-rojo {
-    background: var(--rojo); color: white; border: none;
-    padding: 15px 30px; font-size: 1.2rem; border-radius: 5px;
-    cursor: pointer; margin-top: 20px; width: 100%; max-width: 300px;
-}
+/* Cuadros de información técnica */
+.cuadro-info { background: rgba(204, 0, 0, 0.1); border-left: 4px solid var(--rojo); padding: 10px; margin: 10px 0; border-radius: 4px; font-size: 0.9rem; }
+.cuadro-info p { color: #ffcc00; font-weight: bold; }
+.cuadro-descuento { background: #1a1a1a; padding: 8px; text-align: center; border: 1px dashed #555; color: #00ff00; font-size: 0.85rem; margin-top: 5px; }
 
-/* Catálogo */
-.contenedor-productos {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px;
-}
-
-.producto-card {
-    background: var(--gris); width: 300px; padding: 15px;
-    border-radius: 10px; text-align: center; border: 1px solid #333;
-}
-
-.producto-card img { width: 100%; border-radius: 5px; height: 350px; object-fit: cover; }
-
-/* Detalle y Celular */
-.detalle-grid { display: flex; gap: 30px; padding: 20px; max-width: 1000px; margin: auto; }
-#imagen-principal { width: 400px; border-radius: 10px; }
-
+/* Celular */
 @media (max-width: 768px) {
-    .detalle-grid { flex-direction: column; align-items: center; }
-    #imagen-principal { width: 100%; }
-    .producto-card { width: 100%; }
+    .detalle-grid { display: flex; flex-direction: column; padding: 15px; }
+    .contenedor-productos { padding: 10px; }
 }
 
-.configurador input, .configurador select, .formulario-cliente input {
-    width: 100%; padding: 12px; margin: 10px 0;
-    background: #333; color: white; border: 1px solid #555;
-}
-
-.btn-whatsapp {
-    background: #25d366; color: white; border: none;
-    padding: 15px; width: 100%; font-weight: bold; cursor: pointer;
-    border-radius: 5px; margin-top: 10px;
-}
+.btn-rojo { background: var(--rojo); color: white; border: none; padding: 15px; width: 100%; border-radius: 5px; cursor: pointer; font-weight: bold; }
+.btn-whatsapp { background: #25d366; color: white; border: none; padding: 15px; width: 100%; border-radius: 5px; font-weight: bold; margin-top: 10px; cursor: pointer; }
