@@ -51,6 +51,7 @@
 
     <section id="catalogo" class="hidden">
         <h2 class="titulo-seccion">NUESTRAS PRENDAS</h2>
+        <p class="aviso-fotos">⚠️ *Las fotos son ejemplos, recuerda que personalizamos a tu gusto.*</p>
         <div class="contenedor-productos">
             <div class="producto-card" onclick="verDetalle('fenix')">
                 <img src="fenix1.jpg" alt="Fénix Premium">
@@ -82,11 +83,24 @@
             </div>
             <div class="configurador">
                 <h2 id="detalle-titulo"></h2>
-                <div id="contenedor-info-tecnica"></div>
+                <div id="opciones-colores">
+                    <label>Color de la prenda:</label>
+                    <select id="color-prenda">
+                        <option value="Azul Oscuro">Azul Oscuro (Jean)</option>
+                        <option value="Negro">Negro</option>
+                        <option value="Verde Militar">Verde Militar</option>
+                        <option value="Gris">Gris</option>
+                        <option value="Otro">Otro (Especificar abajo)</option>
+                    </select>
+                </div>
                 <label>Talla o Material:</label>
                 <select id="opcion-producto" onchange="actualizarCalculos()"></select>
                 <label>Cantidad:</label>
                 <input type="number" id="cantidad-input" value="1" min="1" oninput="actualizarCalculos()">
+                
+                <label>¿Cómo la quieres? (Bordados, detalles):</label>
+                <textarea id="personalizacion-texto" placeholder="Ej: Bandera en brazo izquierdo, RH: O+, Nombre: Juan..."></textarea>
+                
                 <p>Precio: <span id="precio-unitario"></span></p>
                 <p>Subtotal: <strong id="subtotal-valor">$0</strong></p>
                 <button class="btn-rojo" onclick="agregarAlCarrito()">AÑADIR AL PEDIDO 🛒</button>
@@ -97,7 +111,12 @@
     <section id="carrito-seccion" class="hidden">
         <h2>RESUMEN DE TU PEDIDO</h2>
         <div id="lista-carrito"></div>
+        <div class="botones-carrito-acciones">
+            <button class="btn-blanco" onclick="volverAlCatalogo()">+ SEGUIR AGREGANDO</button>
+            <button class="btn-gris" onclick="vaciarCarrito()">🗑️ VACIAR CARRITO</button>
+        </div>
         <h3>TOTAL: <span id="total-precio">$0</span></h3>
+        <p class="pago-info">💳 *Recibimos Nequi, Daviplata o Efectivo*</p>
         <div class="formulario-cliente">
             <input type="text" id="nombre-cliente" placeholder="Tu Nombre Completo">
             <button class="btn-whatsapp" onclick="enviarWhatsApp()">PEDIR POR WHATSAPP ✅</button>
