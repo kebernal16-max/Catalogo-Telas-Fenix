@@ -7,7 +7,7 @@ const fotosProductos = {
     'capuchon': ['cap-mixto.jpg']
 };
 
-// --- FUNCIONES DE NAVEGACIÓN ---
+// --- NAVEGACIÓN (CORREGIDA) ---
 function abrirAyuda() {
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     document.getElementById('seccion-ayuda').classList.remove('hidden');
@@ -28,14 +28,14 @@ function volverAlCatalogo() {
     document.getElementById('catalogo').classList.remove('hidden');
 }
 
-// --- FUNCIONES DE PRODUCTO ---
+// --- DETALLES DE PRODUCTO ---
 function verDetalle(tipo) {
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     document.getElementById('detalle-tecnico').classList.remove('hidden');
     
     const select = document.getElementById('opcion-producto');
     select.innerHTML = "";
-    document.getElementById('personalizacion-texto').value = "";
+    document.getElementById('personalizacion-texto').value = ""; 
 
     if (tipo === 'fenix') {
         productoActual = { nombre: "Línea Fénix Premium", precio: 95000 };
@@ -62,13 +62,14 @@ function actualizarCalculos() {
     document.getElementById('precio-unitario').innerText = "$" + precio.toLocaleString();
 }
 
-// --- FUNCIONES DE CARRITO ---
+// --- GESTIÓN DE CARRITO ---
 function agregarAlCarrito() {
     const cant = parseInt(document.getElementById('cantidad-input').value);
     const opcion = document.getElementById('opcion-producto').value;
     const color = document.getElementById('color-prenda').value;
     const detalle = document.getElementById('personalizacion-texto').value;
-    const precio = parseInt(document.getElementById('precio-unitario').innerText.replace('$','').replace('.','').replace('.',''));
+    const precioTexto = document.getElementById('precio-unitario').innerText.replace('$','').split('.').join('');
+    const precio = parseInt(precioTexto);
     
     carrito.push({ 
         nombre: productoActual.nombre, 
