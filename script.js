@@ -1,13 +1,13 @@
 let carrito = [];
 let productoActual = {};
 
+// CONFIGURACIÓN DE FOTOS: Añade aquí los nombres exactos que subas a GitHub
 const fotosProductos = {
-    'fenix': ['fenix1.jpg'], 
-    'estandar': ['estandar1.jpg'],
-    'capuchon': ['cap-mixto.jpg']
+    'fenix': ['fenix1.jpg', 'fenix2.jpg', 'fenix3.jpg'], 
+    'estandar': ['estandar1.jpg', 'estandar2.jpg'],
+    'capuchon': ['cap-mixto.jpg', 'cap-drill.jpg']
 };
 
-// --- NAVEGACIÓN (CORREGIDA) ---
 function abrirAyuda() {
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     document.getElementById('seccion-ayuda').classList.remove('hidden');
@@ -28,14 +28,33 @@ function volverAlCatalogo() {
     document.getElementById('catalogo').classList.remove('hidden');
 }
 
-// --- DETALLES DE PRODUCTO ---
 function verDetalle(tipo) {
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     document.getElementById('detalle-tecnico').classList.remove('hidden');
     
     const select = document.getElementById('opcion-producto');
+    const miniaturasContenedor = document.getElementById('miniaturas-contenedor');
     select.innerHTML = "";
+    miniaturasContenedor.innerHTML = ""; 
     document.getElementById('personalizacion-texto').value = ""; 
+
+    // Cargar fotos y crear miniaturas
+    const listaFotos = fotosProductos[tipo] || [];
+    if (listaFotos.length > 0) {
+        document.getElementById('imagen-principal').src = listaFotos[0];
+        listaFotos.forEach((foto, index) => {
+            const imgMin = document.createElement('img');
+            imgMin.src = foto;
+            imgMin.classList.add('miniatura');
+            if (index === 0) imgMin.classList.add('active');
+            imgMin.onclick = () => {
+                document.getElementById('imagen-principal').src = foto;
+                document.querySelectorAll('.miniatura').forEach(m => m.classList.remove('active'));
+                imgMin.classList.add('active');
+            };
+            miniaturasContenedor.appendChild(imgMin);
+        });
+    }
 
     if (tipo === 'fenix') {
         productoActual = { nombre: "Línea Fénix Premium", precio: 95000 };
@@ -48,7 +67,6 @@ function verDetalle(tipo) {
         select.innerHTML = '<option value="Dacron" data-p="12000">Dacrón ($12.000)</option><option value="Mixto" data-p="14000">Mixto ($14.000)</option><option value="Drill" data-p="16000">Drill ($16.000)</option>';
     }
 
-    document.getElementById('imagen-principal').src = fotosProductos[tipo][0];
     document.getElementById('detalle-titulo').innerText = productoActual.nombre;
     actualizarCalculos();
 }
@@ -62,7 +80,6 @@ function actualizarCalculos() {
     document.getElementById('precio-unitario').innerText = "$" + precio.toLocaleString();
 }
 
-// --- GESTIÓN DE CARRITO ---
 function agregarAlCarrito() {
     const cant = parseInt(document.getElementById('cantidad-input').value);
     const opcion = document.getElementById('opcion-producto').value;
@@ -95,7 +112,7 @@ function irAlCarrito() {
     let total = 0;
     carrito.forEach(i => {
         total += i.subtotal;
-        lista.innerHTML += `<div style="border-bottom: 1px solid #333; padding: 10px 0;">
+        lista.innerHTML += `<div style="border-bottom: 1px solid #333; padding: 10px; margin-bottom: 10px;">
             <p><strong>${i.cant}x ${i.nombre}</strong> (${i.opcion})</p>
             <p style="font-size: 0.9rem; color: #ccc;">Color: ${i.color} | Detalle: ${i.detalle}</p>
             <p>Subtotal: $${i.subtotal.toLocaleString()}</p>
