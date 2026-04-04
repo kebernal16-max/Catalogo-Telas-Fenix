@@ -1,13 +1,27 @@
 let carrito = [];
 let productoActual = {};
 
-// CONFIGURACIÓN DE FOTOS: Añade aquí los nombres exactos que subas a GitHub
+// CONFIGURACIÓN DE FOTOS
 const fotosProductos = {
     'fenix': ['fenix1.jpg', 'fenix2.jpg', 'fenix3.jpg'], 
     'estandar': ['estandar1.jpg', 'estandar2.jpg'],
     'capuchon': ['cap-mixto.jpg', 'cap-drill.jpg']
 };
 
+// --- NUEVA LÓGICA DE MEMORIA (AL CARGAR) ---
+window.onload = function() {
+    const carritoGuardado = localStorage.getItem('carritoReyand');
+    if (carritoGuardado) {
+        carrito = JSON.parse(carritoGuardado);
+        document.getElementById('cart-count').innerText = carrito.length;
+    }
+};
+
+function guardarEnMemoria() {
+    localStorage.setItem('carritoReyand', JSON.stringify(carrito));
+}
+
+// --- NAVEGACIÓN ---
 function abrirAyuda() {
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     document.getElementById('seccion-ayuda').classList.remove('hidden');
@@ -28,6 +42,7 @@ function volverAlCatalogo() {
     document.getElementById('catalogo').classList.remove('hidden');
 }
 
+// --- DETALLES DE PRODUCTO ---
 function verDetalle(tipo) {
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     document.getElementById('detalle-tecnico').classList.remove('hidden');
@@ -38,7 +53,6 @@ function verDetalle(tipo) {
     miniaturasContenedor.innerHTML = ""; 
     document.getElementById('personalizacion-texto').value = ""; 
 
-    // Cargar fotos y crear miniaturas
     const listaFotos = fotosProductos[tipo] || [];
     if (listaFotos.length > 0) {
         document.getElementById('imagen-principal').src = listaFotos[0];
@@ -80,6 +94,7 @@ function actualizarCalculos() {
     document.getElementById('precio-unitario').innerText = "$" + precio.toLocaleString();
 }
 
+// --- GESTIÓN DE CARRITO (CON MEMORIA) ---
 function agregarAlCarrito() {
     const cant = parseInt(document.getElementById('cantidad-input').value);
     const opcion = document.getElementById('opcion-producto').value;
@@ -98,7 +113,11 @@ function agregarAlCarrito() {
     });
     
     document.getElementById('cart-count').innerText = carrito.length;
-    alert("¡Añadido! Puedes seguir comprando o confirmar tu pedido arriba.");
+    
+    // GUARDAR EN MEMORIA
+    guardarEnMemoria();
+    
+    alert("¡Añadido! Tu pedido se ha guardado en el carrito.");
     volverAlCatalogo();
 }
 
@@ -125,6 +144,8 @@ function vaciarCarrito() {
     if(confirm("¿Seguro que quieres borrar todo tu pedido?")) {
         carrito = [];
         document.getElementById('cart-count').innerText = "0";
+        // LIMPIAR MEMORIA
+        localStorage.removeItem('carritoReyand');
         volverAlCatalogo();
     }
 }
