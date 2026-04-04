@@ -24,17 +24,24 @@ body {
     background-position: center;
 }
 
-.bienvenida-contenido h1 { font-size: 1.6rem; margin: 20px 0; }
+.bienvenida-contenido h1 { font-size: 1.6rem; margin: 20px 0; color: white; }
 .botones-inicio { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 300px; margin: 0 auto; }
 
 /* BOTONES */
-.btn-rojo { background: var(--rojo); color: white; border: none; padding: 16px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+.btn-rojo { background: var(--rojo); color: white; border: none; padding: 16px; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
 .btn-ayuda { background: rgba(255,255,255,0.1); color: white; border: 1px solid white; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
 /* SECCIÓN AYUDA */
 #seccion-ayuda { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 3000; padding: 20px; overflow-y: auto; }
 .paso-ayuda { display: flex; gap: 15px; background: #111; padding: 15px; border-radius: 10px; margin-bottom: 15px; border-left: 3px solid var(--rojo); text-align: left; }
 .paso-ayuda p { font-size: 0.85rem; color: #ddd; line-height: 1.4; }
+.paso-ayuda strong { color: #ffcc00; display: block; margin-bottom: 5px; }
+
+/* CATÁLOGO */
+.contenedor-productos { padding: 20px; display: grid; grid-template-columns: 1fr; gap: 20px; }
+.producto-card { background: #111; border: 1px solid #333; border-radius: 12px; padding: 15px; text-align: center; }
+.producto-card img { width: 100%; border-radius: 8px; margin-bottom: 10px; }
+.btn-ver { background: white; color: black; border: none; padding: 8px 15px; border-radius: 4px; font-weight: bold; cursor: pointer; }
 
 /* CARRITO ICONO */
 #cart-icon { position: fixed; top: 15px; right: 15px; background: var(--rojo); padding: 10px 15px; border-radius: 50px; z-index: 1000; cursor: pointer; font-weight: bold; }
