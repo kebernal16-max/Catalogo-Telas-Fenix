@@ -1,66 +1,40 @@
-/* AJUSTE INICIO CELULAR */
+* { box-sizing: border-box; margin: 0; padding: 0; max-width: 100vw; }
+:root { --rojo: #cc0000; --oscuro: #000; --verde: #28a745; }
+
+body { 
+    font-family: 'Segoe UI', sans-serif; 
+    background-color: var(--oscuro); 
+    color: white;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.hidden { display: none !important; }
+
+/* INICIO AJUSTADO */
 .bienvenida-contenido {
-    padding: 20px;
+    padding: 40px 20px;
     text-align: center;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('ave-fenix.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
-.bienvenida-contenido h1 {
-    font-size: 1.6rem; /* Ajustado para que no se salga */
-    margin: 20px 0;
-    line-height: 1.3;
-}
+.bienvenida-contenido h1 { font-size: 1.6rem; margin: 20px 0; }
+.botones-inicio { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 300px; margin: 0 auto; }
 
-.botones-inicio {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-}
+/* BOTONES */
+.btn-rojo { background: var(--rojo); color: white; border: none; padding: 16px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+.btn-ayuda { background: rgba(255,255,255,0.1); color: white; border: 1px solid white; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
-.btn-ayuda {
-    background: rgba(255,255,255,0.1);
-    color: white;
-    border: 1px solid white;
-    padding: 15px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/* DISEÑO DE LA AYUDA */
-#seccion-ayuda {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: #000;
-    z-index: 3000;
-    padding: 20px;
-    overflow-y: auto;
-}
-
-.contenido-ayuda h2 { 
-    color: var(--rojo); 
-    text-align: center; 
-    margin-bottom: 20px; 
-    font-size: 1.4rem;
-}
-
-.paso-ayuda {
-    display: flex;
-    gap: 15px;
-    background: #111;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    border-left: 3px solid var(--rojo);
-}
-
-.paso-ayuda span { font-size: 1.5rem; }
-.paso-ayuda strong { color: #ffcc00; display: block; margin-bottom: 5px; }
+/* SECCIÓN AYUDA */
+#seccion-ayuda { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 3000; padding: 20px; overflow-y: auto; }
+.paso-ayuda { display: flex; gap: 15px; background: #111; padding: 15px; border-radius: 10px; margin-bottom: 15px; border-left: 3px solid var(--rojo); text-align: left; }
 .paso-ayuda p { font-size: 0.85rem; color: #ddd; line-height: 1.4; }
+
+/* CARRITO ICONO */
+#cart-icon { position: fixed; top: 15px; right: 15px; background: var(--rojo); padding: 10px 15px; border-radius: 50px; z-index: 1000; cursor: pointer; font-weight: bold; }
