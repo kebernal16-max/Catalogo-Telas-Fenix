@@ -21,6 +21,13 @@ body { font-family: sans-serif; background: #000; color: white; line-height: 1.6
 
 textarea, select, input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 5px; background: #222; color: #fff; border: 1px solid #444; }
 
+/* NUEVOS ESTILOS PARA INFO DE PAGO */
+.info-pagos-envio { background: #1a1a1a; margin: 20px; padding: 15px; border-radius: 10px; border: 1px solid #333; font-size: 0.9rem; }
+.info-pagos-envio h4 { color: #ffcc00; margin-bottom: 10px; }
+.info-pagos-envio ul { list-style: none; padding: 0; }
+.info-pagos-envio li { margin-bottom: 10px; padding-left: 20px; position: relative; }
+.info-pagos-envio li:before { content: "•"; color: #cc0000; position: absolute; left: 0; font-weight: bold; }
+
 .carrito-item { position: relative; border-bottom: 1px solid #333; padding: 15px 0; }
 .btn-borrar { position: absolute; right: 0; top: 15px; background: none; border: none; color: white; cursor: pointer; }
 
