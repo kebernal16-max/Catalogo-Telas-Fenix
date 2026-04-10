@@ -49,38 +49,32 @@
                         • Cierre con 1 broche en los puños.
                     </li>
                 </ul>
-
-                <h3 style="margin: 20px 0 10px 0; border-top: 1px solid #333; padding-top: 10px;">📲 Pasos para el pedido</h3>
-                <p><strong>1. Elige:</strong> Selecciona tu línea favorita en el catálogo.</p>
-                <p><strong>2. Personaliza:</strong> Dinos el color, talla y detalles de bordados.</p>
-                <p><strong>3. WhatsApp:</strong> Envía el resumen y coordinamos el pago.</p>
             </div>
-
             <button class="btn-rojo" onclick="cerrarAyuda()" style="margin-top: 20px;">¡ENTENDIDO!</button>
         </div>
     </section>
 
     <section id="catalogo" class="hidden">
         <h2 style="text-align: center; margin: 20px 0;">NUESTRAS PRENDAS</h2>
-        <p class="aviso-fotos">⚠️ *Las fotos son ejemplos, personalizamos a tu gusto.*</p>
+        <p class="aviso-fotos">⚠️ *Haz clic para ver el catálogo de fotos completo.*</p>
         <div class="contenedor-productos">
             <div class="producto-card" onclick="verDetalle('fenix')">
                 <img src="fenix1.jpg" alt="Fénix">
                 <h3>Línea Fénix Premium</h3>
                 <p>Desde $95.000</p>
-                <button class="btn-rojo">Ver Detalles</button>
+                <button class="btn-rojo">VER CATÁLOGO COMPLETO</button>
             </div>
             <div class="producto-card" onclick="verDetalle('estandar')">
                 <img src="estandar1.jpg" alt="Estándar">
                 <h3>Línea Estándar</h3>
                 <p>Desde $85.000</p>
-                <button class="btn-rojo">Ver Detalles</button>
+                <button class="btn-rojo">VER CATÁLOGO COMPLETO</button>
             </div>
             <div class="producto-card" onclick="verDetalle('capuchon')">
                 <img src="cap-mixto.jpg" alt="Capuchón">
                 <h3>Capuchones Industriales</h3>
                 <p>Desde $12.000</p>
-                <button class="btn-rojo">Ver Detalles</button>
+                <button class="btn-rojo">VER CATÁLOGO COMPLETO</button>
             </div>
         </div>
     </section>
@@ -109,9 +103,9 @@
             <input type="number" id="cantidad-input" value="1" min="1" oninput="actualizarCalculos()">
 
             <label>Detalles extras (Bordados, nombres, RH):</label>
-            <textarea id="personalizacion-texto" placeholder="Ej: Bandera en brazo, nombre 'Yeison Guerra' en pecho..."></textarea>
+            <textarea id="personalizacion-texto" placeholder="Ej: Bandera en brazo, nombre en pecho..."></textarea>
 
-            <p>Precio: <span id="precio-unitario"></span></p>
+            <p>Precio Unitario: <span id="precio-unitario"></span></p>
             <p>Subtotal: <strong id="subtotal-valor">$0</strong></p>
             <button class="btn-rojo" onclick="agregarAlCarrito()">AÑADIR AL PEDIDO 🛒</button>
         </div>
@@ -119,27 +113,21 @@
 
     <section id="carrito-seccion" class="hidden">
         <h2 style="text-align: center; margin: 20px 0;">RESUMEN DEL PEDIDO</h2>
-        <div id="lista-carrito" style="max-height: 400px; overflow-y: auto; padding: 0 10px;"></div>
-        
+        <div id="lista-carrito"></div>
         <div class="botones-carrito-acciones">
             <button class="btn-blanco" onclick="volverAlCatalogo()">+ SEGUIR COMPRANDO</button>
             <button class="btn-gris" onclick="vaciarCarrito()">🗑️ VACIAR</button>
         </div>
-
         <h3 style="text-align: center;">TOTAL: <span id="total-precio">$0</span></h3>
-        
-        <div style="text-align: center; margin: 20px 0; padding: 15px; background: #111; border-radius: 12px; border: 1px solid #222;">
-            <p style="font-size: 0.9rem; margin-bottom: 10px; color: #ccc;">Medios de pago disponibles:</p>
-            <div style="display: flex; justify-content: center; gap: 20px; align-items: center; margin-bottom: 15px;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Nequi_Logo.png/640px-Nequi_Logo.png" alt="Nequi" style="height: 20px; filter: grayscale(0.3);">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Daviplata_logo.png" alt="Daviplata" style="height: 20px;">
-                <span style="font-size: 0.7rem; border: 1px solid #444; padding: 2px 6px; border-radius: 4px; color: #aaa;">Efectivo</span>
+        <div class="pago-panel">
+            <p>Medios de pago disponibles:</p>
+            <div class="logos-pago">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Nequi_Logo.png/640px-Nequi_Logo.png" alt="Nequi">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Daviplata_logo.png" alt="Daviplata">
+                <span>Efectivo</span>
             </div>
-            <p style="color: #00ffcc; font-size: 0.8rem; font-weight: bold; line-height: 1.2;">
-                ⚠️ La información de pago se brinda por WhatsApp al confirmar tu pedido.
-            </p>
+            <p class="pago-nota">⚠️ La información de pago se brinda por WhatsApp al confirmar tu pedido.</p>
         </div>
-        
         <div style="padding: 20px;">
             <input type="text" id="nombre-cliente" placeholder="Escribe tu nombre completo">
             <button class="btn-rojo" style="background: #25D366;" onclick="enviarWhatsApp()">ENVIAR A WHATSAPP ✅</button>
