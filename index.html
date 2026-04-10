@@ -60,29 +60,48 @@
         </div>
     </section>
 
-    <section id="catalogo" class="hidden">
-        <h2 style="text-align: center; margin: 20px 0;">NUESTRAS PRENDAS</h2>
-        <p class="aviso-fotos">⚠️ *Las fotos son ejemplos, personalizamos a tu gusto.*</p>
+<section id="catalogo" class="hidden">
+        <div class="header-catalogo">
+            <h2 style="text-align: center; margin: 20px 0; letter-spacing: 2px;">COLECCIÓN EXCLUSIVA</h2>
+            <div class="linea-decorativa"></div>
+        </div>
+
+        <div class="categorias-tabs">
+            <button class="tab-btn active">Todo</button>
+            <button class="tab-btn">Chaquetas</button>
+            <button class="tab-btn">Accesorios</button>
+        </div>
+
+        <p class="aviso-fotos">⚠️ *Personalización total: tú eliges el diseño, nosotros lo creamos.*</p>
+        
         <div class="contenedor-productos">
             <div class="producto-card" onclick="verDetalle('fenix')">
+                <div class="badge-premium">PREMIUM</div>
                 <img src="fenix1.jpg" alt="Fénix">
                 <h3>Línea Fénix Premium</h3>
-                <p>Desde $95.000</p>
-                <button class="btn-rojo">Ver Detalles</button>
+                <p class="precio-tag">Desde $95.000</p>
+                <button class="btn-rojo">CONFIGURAR AHORA</button>
             </div>
+            
             <div class="producto-card" onclick="verDetalle('estandar')">
                 <img src="estandar1.jpg" alt="Estándar">
                 <h3>Línea Estándar</h3>
-                <p>Desde $85.000</p>
-                <button class="btn-rojo">Ver Detalles</button>
+                <p class="precio-tag">Desde $85.000</p>
+                <button class="btn-rojo">CONFIGURAR AHORA</button>
             </div>
+
             <div class="producto-card" onclick="verDetalle('capuchon')">
                 <img src="cap-mixto.jpg" alt="Capuchón">
                 <h3>Capuchones Industriales</h3>
-                <p>Desde $12.000</p>
-                <button class="btn-rojo">Ver Detalles</button>
+                <p class="precio-tag">Desde $12.000</p>
+                <button class="btn-rojo">CONFIGURAR AHORA</button>
             </div>
         </div>
+
+        <footer style="margin-top: 50px; padding: 40px 20px; background: #0a0a0a; text-align: center; border-top: 1px solid #222;">
+            <p style="color: #666; font-size: 0.9rem;">© 2026 Reyand Clothing - Diseñado por Bernal Pro-Software</p>
+            <p style="color: var(--rojo); font-weight: bold; margin-top: 10px;">Bogotá, Colombia 🇨🇴</p>
+        </footer>
     </section>
 
     <section id="detalle-tecnico" class="hidden">
