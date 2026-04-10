@@ -1,14 +1,12 @@
 let carrito = [];
 let productoActual = {};
 
-// CONFIGURACIÓN DE FOTOS: Aquí están las 3 de Fénix y las 3 de Estándar
 const fotosProductos = {
     'fenix': ['fenix1.jpg', 'fenix2.jpg', 'fenix3.jpg'], 
     'estandar': ['estandar1.jpg', 'estandar2.jpg', 'estandar3.jpg'],
     'capuchon': ['cap-mixto.jpg', 'cap-drill.jpg']
 };
 
-// --- MEMORIA DEL CARRITO ---
 window.onload = function() {
     const carritoGuardado = localStorage.getItem('carritoReyand');
     if (carritoGuardado) {
@@ -42,7 +40,7 @@ function volverAlCatalogo() {
     document.getElementById('catalogo').classList.remove('hidden');
 }
 
-// --- DETALLES DE PRODUCTO (Lógica de Miniaturas) ---
+// --- DETALLES DE PRODUCTO ---
 function verDetalle(tipo) {
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     document.getElementById('detalle-tecnico').classList.remove('hidden');
@@ -55,19 +53,14 @@ function verDetalle(tipo) {
     document.getElementById('personalizacion-texto').value = ""; 
 
     const listaFotos = fotosProductos[tipo] || [];
-    
     if (listaFotos.length > 0) {
-        // Ponemos la primera foto como principal
         document.getElementById('imagen-principal').src = listaFotos[0];
-        
-        // Creamos los cuadritos (miniaturas) para las otras fotos
         listaFotos.forEach((foto, index) => {
             const imgMin = document.createElement('img');
             imgMin.src = foto;
             imgMin.classList.add('miniatura');
             if (index === 0) imgMin.classList.add('active');
             
-            // Acción al tocar la miniatura
             imgMin.onclick = () => {
                 document.getElementById('imagen-principal').src = foto;
                 document.querySelectorAll('.miniatura').forEach(m => m.classList.remove('active'));
@@ -77,7 +70,6 @@ function verDetalle(tipo) {
         });
     }
 
-    // Configuración de Precios y Tallas
     if (tipo === 'fenix') {
         productoActual = { nombre: "Línea Fénix Premium", precio: 95000 };
         ['S', 'M', 'L', 'XL'].forEach(t => select.innerHTML += `<option value="${t}">${t}</option>`);
@@ -109,6 +101,17 @@ function actualizarCalculos() {
 }
 
 // --- CARRITO ---
+function eliminarDelCarrito(index) {
+    carrito.splice(index, 1);
+    document.getElementById('cart-count').innerText = carrito.length;
+    guardarEnMemoria();
+    if (carrito.length === 0) {
+        volverAlCatalogo();
+    } else {
+        irAlCarrito();
+    }
+}
+
 function agregarAlCarrito() {
     const cant = parseInt(document.getElementById('cantidad-input').value);
     const opcion = document.getElementById('opcion-producto').value;
@@ -127,10 +130,18 @@ function agregarAlCarrito() {
     });
     
     document.getElementById('cart-count').innerText = carrito.length;
-    guardarEnMemoria(); // Se guarda en el celular del cliente
+    guardarEnMemoria();
+
+    // Notificación elegante
+    const toast = document.createElement('div');
+    toast.innerText = "✅ Añadido al pedido";
+    toast.style = "position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: #25D366; color: white; padding: 12px 25px; border-radius: 50px; z-index: 2000; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.5);";
+    document.body.appendChild(toast);
     
-    alert("¡Añadido con éxito! Puedes verlo en el carrito arriba.");
-    volverAlCatalogo();
+    setTimeout(() => {
+        toast.remove();
+        volverAlCatalogo();
+    }, 1500);
 }
 
 function irAlCarrito() {
@@ -142,13 +153,15 @@ function irAlCarrito() {
     lista.innerHTML = "";
     let total = 0;
     
-    carrito.forEach(i => {
+    carrito.forEach((i, index) => {
         total += i.subtotal;
         lista.innerHTML += `
-            <div style="border-bottom: 1px solid #333; padding: 10px; margin-bottom: 10px;">
-                <p><strong>${i.cant}x ${i.nombre}</strong> (${i.opcion})</p>
-                <p style="font-size: 0.9rem; color: #ccc;">Color: ${i.color} | Detalle: ${i.detalle}</p>
-                <p>Subtotal: $${i.subtotal.toLocaleString()}</p>
+            <div style="border-bottom: 1px solid #333; padding: 15px 10px; margin-bottom: 10px; position: relative;">
+                <button onclick="eliminarDelCarrito(${index})" style="position: absolute; right: 0; top: 15px; background: none; border: none; color: #ff4444; font-size: 1.2rem; cursor: pointer;">🗑️</button>
+                <p><strong>${i.cant}x ${i.nombre}</strong></p>
+                <p style="font-size: 0.9rem; color: #ccc;">${i.opcion} | Color: ${i.color}</p>
+                <p style="font-size: 0.8rem; color: #888;">${i.detalle}</p>
+                <p style="color: #ffcc00; font-weight: bold;">$${i.subtotal.toLocaleString()}</p>
             </div>`;
     });
     document.getElementById('total-precio').innerText = "$" + total.toLocaleString();
